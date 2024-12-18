@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-214
+  labels:
+    app: nginx
+spec:
+  containers:
+    - name: nginx-local
+      image: nginx
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc-214
+spec:
+  selector:
+    app: nginx
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    nodePort: 30080
